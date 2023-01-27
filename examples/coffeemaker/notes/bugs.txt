@@ -1,0 +1,35 @@
+1)  field : NUM_RECIPES
+    line code : 25
+    description : number of recipes should be not more than 3 according to the User Story Add a Recipe
+    solution : value in of the field NUM_RECIPES should be changed to 3 -> private final int NUM_RECIPES = 3;
+
+2)  method : addRecipe
+    line code : 64-69
+    description: recipe is added to the last empty spot, not the first one because the loop continues to work after finding the first empty spot
+    solution : add "break;" on the new line after line 67;
+
+3)	method : deleteRecipe
+	line code : 92
+	description : recipe is not deleted from the array recipeArray and spot stayed full in the array recipeFull
+    solution :  instead of line 92 2 following lines should be inserted:
+                recipeArray[i] = new Recipe();
+                recipeFull[i] = false;
+
+4)	method : editRecipe
+	line code : 125-132
+	description : the name of the newRecipe is checked instead of oldRecipe and newRecipe should not be added to the new spot, it should just replace the old one.
+	solution: code in lines 125-132 should be replaced by the following code ->
+	            if(oldRecipe.equals(recipeArray[i])) {
+                    recipeArray[i] = newRecipe;
+                    canEditRecipe = true;
+                }
+
+5)	method : addInventory
+	line code : 149
+	description : in the if statement one of the conditions checks amount of sugar to be positive instead of negative
+    solution : if statement in line 149 should be replaced with the following if statement -> if(amtCoffee < 0 || amtMilk < 0 || amtSugar < 0 || amtChocolate < 0)
+
+6)	method : makeCoffee
+	line code : 185
+	description : in make coffee we must subtract coffee from the existing amount in the inventory but instead coffee is added
+    solution : code in line 185 should be replaced with the following code -> inventory.setCoffee(inventory.getCoffee() - r.getAmtCoffee());
